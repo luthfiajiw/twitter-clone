@@ -1,0 +1,12 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply h-full bg-slate-950
+}
+
+body {
+  @apply h-full bg-slate-950
+}
