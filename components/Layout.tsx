@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Sidebar from './layout/Sidebar';
+import Sidebar from './sidebars/Sidebar';
+import FollowBar from './sidebars/FollowBar';
 
 interface ILayoutProps {
     children: React.ReactNode
@@ -19,6 +20,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
           '>
             {props.children}
           </div>
+          <FollowBar />
         </div>
       </div>
     </div>

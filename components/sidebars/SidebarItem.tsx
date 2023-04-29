@@ -41,7 +41,9 @@ const SidebarItem: React.FunctionComponent<ISidebarItemProps> = (props) => {
         md:flex
         items-center
         gap-4
-        p-4
+        px-4
+        pt-3
+        pb-4
         rounded-full
         hover:bg-slate-300
         hover:bg-opacity-10

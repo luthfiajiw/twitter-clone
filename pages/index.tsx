@@ -1,11 +1,13 @@
+import Header from '@/components/Header'
 import { Inter } from 'next/font/google'
+import { Fragment } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div className={`${inter.className} text-white`}>
-      Hello world!
-    </div>
+    <Fragment>
+      <Header label='Home' />
+    </Fragment>
   )
 }

@@ -40,7 +40,7 @@ const Sidebar: React.FunctionComponent = () => {
   return (
     <div className='col-span-1 h-full pr-2 md:pr-6'>
       <div className='flex flex-col items-end justify-center'>
-        <div className='space-y-2 '>
+        <div className='space-y-4 '>
           <SideBarLogo />
           {items.map(item => {
             return (
