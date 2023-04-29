@@ -5,6 +5,7 @@ import { BiLogOut } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import SideBarLogo from './SidebarLogo';
 import SidebarItem from './SidebarItem';
+import SidebarTweetBtn from './SidebarTweetBtn';
 
 export interface NavItem {
   label: string
@@ -37,9 +38,9 @@ const Sidebar: React.FunctionComponent = () => {
   ]
 
   return (
-    <div className='col-span-1 h-full pr-4 md:pr-6'>
-      <div className='flex flex-col items-end'>
-        <div className='space-y-2 lg:w[230px]'>
+    <div className='col-span-1 h-full pr-2 md:pr-6'>
+      <div className='flex flex-col items-end justify-center'>
+        <div className='space-y-2 '>
           <SideBarLogo />
           {items.map(item => {
             return (
@@ -49,6 +50,7 @@ const Sidebar: React.FunctionComponent = () => {
               />
             )
           })}
+          <SidebarTweetBtn />
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const SidebarItem: React.FunctionComponent<ISidebarItemProps> = (props) => {
     <div className='flex felx-row items-center'>
       {/* Mobile Ver */}
       <div className='
-        realtive
+        relative
         rounded-full
         h-14
         w-14
@@ -22,12 +22,14 @@ const SidebarItem: React.FunctionComponent<ISidebarItemProps> = (props) => {
         items-center
         justify-center
         p-4
+        sm:p-2
         hover:bg-slate-300
         hover:bg-opacity-10
         cursor-pointer
         lg:hidden
+        md:hidden
       '>
-        <Icon size={28} color='white' />
+        <Icon size={22} color='white' />
       </div>
       {/* ============ */}
 
