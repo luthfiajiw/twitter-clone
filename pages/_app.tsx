@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout'
-import Modal from '@/components/modals/Modal'
+import LoginModal from '@/components/modals/LoginModal'
+import RegisterModal from '@/components/modals/RegisterModal'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Fragment } from 'react'
@@ -7,12 +8,8 @@ import { Fragment } from 'react'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      <Modal
-        title='Modal'
-        actionLabel='Submit'
-        onClose={() => {}}
-        onSubmit={() => {}}
-      />
+      <RegisterModal />
+      <LoginModal />
       <Layout>
         <Component {...pageProps} />
       </Layout>

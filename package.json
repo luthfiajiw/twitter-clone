@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "next": "^13.3.1",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@types/node": "18.16.2",

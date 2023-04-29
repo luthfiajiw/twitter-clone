@@ -16,7 +16,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
             col-span-4
             lg:col-span-3
             border-x-[1px]
-            border-neutral-800
+            border-neutral-700
           '>
             {props.children}
           </div>
