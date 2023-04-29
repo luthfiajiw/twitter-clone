@@ -10,6 +10,7 @@ const SideBarLogo: React.FunctionComponent = () => {
     <div 
     onClick={() => router.push('/')}
     className='
+      mt-1
       mb-4
       rounded-full
       h-14
