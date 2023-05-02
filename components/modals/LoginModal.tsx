@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import Input from '../Input';
 import Modal from './Modal';
 import useRegisterModal from '@/hooks/useRegisterModal';
+import { signIn } from 'next-auth/react';
 
 const LoginModal: React.FC = () => {
   const loginModalState = useLoginModal()
@@ -22,14 +23,19 @@ const LoginModal: React.FC = () => {
   const onSubmit = useCallback(async () => {
     try {
       setLoading(true)
-      // LOG IN
+      
+      await signIn('credentials', {
+        email,
+        password
+      })
+      
       loginModalState.onClose()
     } catch (error) {
       
     } finally {
       setLoading(false)
     }
-  }, [loginModalState])
+  }, [loginModalState, email, password])
 
   const body = (
     <div className='flex flex-col gap-4'>
