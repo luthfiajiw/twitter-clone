@@ -6,14 +6,19 @@ import { FaUser } from 'react-icons/fa';
 import SideBarLogo from './SidebarLogo';
 import SidebarItem from './SidebarItem';
 import SidebarTweetBtn from './SidebarTweetBtn';
+import useCurrentUser from '@/hooks/useCurrentUser';
+import { signOut } from 'next-auth/react';
 
 export interface NavItem {
   label: string
   href: string
   icon: IconType
+  auth?: boolean
 }
 
 const Sidebar: React.FunctionComponent = () => {
+  const { data: currentUser } = useCurrentUser()
+
   const items: NavItem[] = [
     {
       label: "Home",
@@ -23,17 +28,14 @@ const Sidebar: React.FunctionComponent = () => {
     {
       label: "Notifications",
       href: "/notifications",
-      icon: BsBellFill
+      icon: BsBellFill,
+      auth: true
     },
     {
       label: "Profile",
       href: "/users/123",
-      icon: FaUser
-    },
-    {
-      label: "Log Out",
-      href: "/logout",
-      icon: BiLogOut
+      icon: FaUser,
+      auth: true
     },
   ]
 
@@ -50,6 +52,17 @@ const Sidebar: React.FunctionComponent = () => {
               />
             )
           })}
+          {currentUser && (
+            <SidebarItem
+              key="/logout"
+              onClick={() => console.log(currentUser)}
+              item={{
+                label: "Log Out",
+                href: "/logout",
+                icon: BiLogOut
+              }}
+            />
+          )}
           <SidebarTweetBtn />
         </div>
       </div>

@@ -1,17 +1,38 @@
 import * as React from 'react';
 import { NavItem } from './Sidebar';
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
+import useCurrentUser from '@/hooks/useCurrentUser';
+import useLoginModal from '@/hooks/useLoginModal';
 
 interface ISidebarItemProps {
   key?: string
   item: NavItem
+  onClick?: () => void
 }
 
-const SidebarItem: React.FunctionComponent<ISidebarItemProps> = (props) => {
+const SidebarItem: React.FC<ISidebarItemProps> = (props) => {
+  const router = useRouter()
+  const loginModalState = useLoginModal()
+  const { data: currentUser } = useCurrentUser()
+
   const { item } = props
   const { icon: Icon} = item
 
+  const handleClick = useCallback(() => {
+    if (props.onClick) {
+      return props.onClick()
+    }
+
+    if (props.item.auth && !currentUser) {
+      loginModalState.onOpen()
+    } else if (props.item.href) {
+      router.push(props.item.href)
+    }
+  }, [props.onClick, props.item.href, router, currentUser, props.item.auth, loginModalState])
+
   return (
-    <div className='flex felx-row items-center'>
+    <div onClick={handleClick} className='flex felx-row items-center'>
       {/* Mobile Ver */}
       <div className='
         relative
