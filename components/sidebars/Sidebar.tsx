@@ -33,7 +33,7 @@ const Sidebar: React.FunctionComponent = () => {
     },
     {
       label: "Profile",
-      href: "/users/123",
+      href: `/users/${currentUser?.id}`,
       icon: FaUser,
       auth: true
     },
@@ -55,7 +55,7 @@ const Sidebar: React.FunctionComponent = () => {
           {currentUser && (
             <SidebarItem
               key="/logout"
-              onClick={() => console.log(currentUser)}
+              onClick={() => signOut()}
               item={{
                 label: "Log Out",
                 href: "/logout",
