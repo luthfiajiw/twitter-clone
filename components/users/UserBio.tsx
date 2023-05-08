@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import Button from "../Button";
 import { BiCalendar } from "react-icons/bi";
 import useEditModal from "@/hooks/useEditModal";
+import useFollow from "@/hooks/useFollow";
 
 interface IUserBioProps {
   userId: string
@@ -13,6 +14,8 @@ interface IUserBioProps {
 const UserBio: React.FunctionComponent<IUserBioProps> = (props) => {
   const { data: currentUser } = useCurrentUser()
   const { data: fetchedUser } = useUser(props.userId)
+  const { isFollowing, toggleFollow } = useFollow(props.userId)
+
   const editModalState = useEditModal()
 
   const createdAt = useMemo(() => {
@@ -28,7 +31,14 @@ const UserBio: React.FunctionComponent<IUserBioProps> = (props) => {
       <div className="flex justify-end p-2">
         {
           currentUser?.id !== fetchedUser?.id
-          ? <Button secondary label="Follow" onClick={() => {}} />
+          ? (
+            <Button
+              secondary={!isFollowing}
+              outlined={isFollowing}
+              label={isFollowing ? "Following" : "Follow"}
+              onClick={toggleFollow}
+            />
+          )
           : <Button secondary label="Edit" onClick={editModalState.onOpen} />
         }
       </div>
