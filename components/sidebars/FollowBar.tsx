@@ -13,7 +13,7 @@ const FollowBar: React.FunctionComponent<IFollowBarProps> = (props) => {
   }
 
   return (
-    <div className='px2 md:px-6 py-4 hidden lg:block'>
+    <div className='px2 md:px-6 py-4 hidden lg:block lg:col-span-1'>
       <div className='bg-neutral-600 rounded-xl px-4 pt-3 pb-4'>
         <h2 className='text-white text-xl font-semibold'>
           Who to follow
