@@ -4,8 +4,12 @@ import useLoginModal from "./useLoginModal";
 import useUser from "./useUser";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { create } from "zustand";
+import { useLoading } from "./useLoading";
 
 function useFollow(userId: string) {
+  const path = '/api/follow'
+  const loadingState = useLoading()
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser()
   const { mutate: mutateFetchedUser } = useUser(userId)
 
@@ -23,19 +27,18 @@ function useFollow(userId: string) {
     }
 
     try {
-      let request
-
+      loadingState.setLoadingPost(true)
       if (isFollowing) {
-        request = () => axios.delete('/api/follow', { data: { userId } })
+        await axios.delete(path, { data: { userId } })
+        toast.success('Unfollowing')
       } else {
-        request = () => axios.post('/api/follow', { userId })
-      }
+        await axios.post(path, { userId })
+        toast.success(`Following`)
+    }
 
-      await request()
       mutateCurrentUser()
       mutateFetchedUser()
-
-      toast.success(`Success`)
+      loadingState.setLoadingPost(false)
     } catch (error) {
       toast.error("Something went wrong")
     }
@@ -50,7 +53,7 @@ function useFollow(userId: string) {
 
   return {
     isFollowing,
-    toggleFollow
+    toggleFollow,
   }
 }
 

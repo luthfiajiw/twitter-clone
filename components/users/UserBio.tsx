@@ -6,12 +6,15 @@ import Button from "../Button";
 import { BiCalendar } from "react-icons/bi";
 import useEditModal from "@/hooks/useEditModal";
 import useFollow from "@/hooks/useFollow";
+import { useLoading } from "@/hooks/useLoading";
 
 interface IUserBioProps {
   userId: string
 }
 
 const UserBio: React.FunctionComponent<IUserBioProps> = (props) => {
+  const loadingState = useLoading()
+
   const { data: currentUser } = useCurrentUser()
   const { data: fetchedUser } = useUser(props.userId)
   const { isFollowing, toggleFollow } = useFollow(props.userId)
@@ -33,6 +36,7 @@ const UserBio: React.FunctionComponent<IUserBioProps> = (props) => {
           currentUser?.id !== fetchedUser?.id
           ? (
             <Button
+              disabled={loadingState.loading}
               secondary={!isFollowing}
               outlined={isFollowing}
               label={isFollowing ? "Following" : "Follow"}
